@@ -20,6 +20,7 @@ You should use this dependency for creating plugins
 ### Gradle
 ````gradle
 repositories {
+    maven { url = "https://repo.opencollab.dev/maven-releases" }
     maven { url = "https://luconia.net/repositories" }
 }
 
@@ -34,6 +35,11 @@ dependencies {
     <repository>
         <id>nukkitmv</id>
         <url>https://luconia.net/repositories</url>
+    </repository>
+    <repository>
+        <id>opencollab-repository-maven-releases</id>
+        <name>Opencollab Repository</name>
+        <url>https://repo.opencollab.dev/maven-releases</url>
     </repository>
 </repositories>
 <dependencies>
