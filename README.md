@@ -1,4 +1,5 @@
 # Nukkit MultiVersion
+---
 
 This is a fork of https://github.com/MemoriesOfTime/NukkitPetteriM1Edition
 with more features like:
@@ -8,7 +9,13 @@ with more features like:
 
 Please note that this project is still work in progress!
 
-# Dependency
+## Usage
+---
+1. Download the latest jar from [releases](https://github.com/Nukkit-MV/Nukkit-MV/releases)
+2. Start the server with `java -jar NukkitMV-1.20.10-SNAPSHOT.jar`
+
+## Dependency
+---
 You should use this dependency for creating plugins
 
 ### Gradle
