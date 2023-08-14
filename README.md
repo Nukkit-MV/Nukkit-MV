@@ -6,6 +6,8 @@ with more features like:
 - better form api
 - more stable
 
+Please note that this project is still work in progress!
+
 # Dependency
 You should use this dependency for creating plugins
 
