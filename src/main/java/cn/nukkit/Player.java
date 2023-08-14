@@ -79,6 +79,7 @@ import cn.nukkit.scheduler.AsyncTask;
 import cn.nukkit.scoreboard.data.DisplaySlot;
 import cn.nukkit.scoreboard.data.SortOrder;
 import cn.nukkit.scoreboard.displayer.IScoreboardViewer;
+import cn.nukkit.scoreboard.manager.IScoreboardManager;
 import cn.nukkit.scoreboard.scoreboard.IScoreboard;
 import cn.nukkit.scoreboard.scoreboard.IScoreboardLine;
 import cn.nukkit.scoreboard.scorer.PlayerScorer;
@@ -1060,6 +1061,11 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
         this.spawned = true;
 
         Form.join(this);
+
+        IScoreboardManager scoreboardManager = this.getServer().getScoreboardManager();
+        if (scoreboardManager != null) {
+            scoreboardManager.onPlayerJoin(this);
+        }
 
         PlayerJoinEvent playerJoinEvent = new PlayerJoinEvent(this,
                 new TranslationContainer(TextFormat.YELLOW + "%multiplayer.player.joined", new String[]{this.displayName})
@@ -5001,6 +5007,11 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                 DisconnectPacket pk = new DisconnectPacket();
                 pk.message = reason;
                 this.forceDataPacket(pk, null);
+            }
+
+            IScoreboardManager scoreboardManager = this.getServer().getScoreboardManager();
+            if (scoreboardManager != null) {
+                scoreboardManager.beforePlayerQuit(this);
             }
 
             Form.quit(this);
