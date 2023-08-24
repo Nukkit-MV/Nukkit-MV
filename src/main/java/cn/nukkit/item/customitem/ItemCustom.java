@@ -16,6 +16,10 @@ public abstract class ItemCustom extends Item {
     @Getter
     private String textureName;
 
+    @Setter
+    @Getter
+    private String namespaceId;
+
     public ItemCustom(int id) {
         this(id, 0, 1, UNKNOWN_STR);
     }
@@ -33,8 +37,13 @@ public abstract class ItemCustom extends Item {
     }
 
     public ItemCustom(int id, Integer meta, int count, String name, String textureName) {
+        this(id, meta, count, name, "custom:" + name.toLowerCase(), textureName);
+    }
+
+    public ItemCustom(int id, Integer meta, int count, String name, String namespaceId, String textureName) {
         super(id, meta, count, name);
         this.textureName = textureName;
+        this.namespaceId = namespaceId;
     }
 
     public boolean allowOffHand() {
@@ -48,7 +57,6 @@ public abstract class ItemCustom extends Item {
     public CompoundTag getComponentsData() {
         Server.mvw("ItemCustom#getComponentsData()");
         return this.getComponentsData(ProtocolInfo.CURRENT_PROTOCOL);
-
     }
 
     public CompoundTag getComponentsData(int protocol) {
@@ -59,11 +67,15 @@ public abstract class ItemCustom extends Item {
                         .putBoolean("hand_equipped", this.isTool())
                         .putInt("creative_category", this.getCreativeCategory())
                         .putInt("max_stack_size", this.getMaxStackSize())));
+        if (name != null && !name.equals(Item.UNKNOWN_STR)) {
+            data.getCompound("components")
+                    .putCompound("minecraft:display_name", new CompoundTag().putString("value", name));
+        }
         if (protocol >= ProtocolInfo.v1_17_30) {
             data.getCompound("components").getCompound("item_properties")
                     .putCompound("minecraft:icon", new CompoundTag()
                             .putString("texture", this.getTextureName() != null ? this.getTextureName() : this.name));
-        }else {
+        } else {
             data.getCompound("components")
                     .putCompound("minecraft:icon", new CompoundTag()
                             .putString("texture", this.getTextureName() != null ? this.getTextureName() : this.name));

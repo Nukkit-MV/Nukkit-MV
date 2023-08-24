@@ -647,7 +647,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
 
     public static void addCreativeItem(Item item) {
         Server.mvw("Item#addCreativeItem(Item)");
-        addCreativeItem(v1_20_0, item);
+        addCreativeItem(v1_20_10, item);
     }
 
     public static void addCreativeItem(int protocol, Item item) {
@@ -724,6 +724,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
                 break;
             case v1_20_10:
                 Item.creative594.add(item.clone());
+                break;
             default:
                 throw new IllegalArgumentException("Tried to register creative items for unsupported protocol version: " + protocol);
         }
@@ -885,7 +886,7 @@ public class Item implements Cloneable, BlockID, ItemID, ProtocolInfo {
 
     public static Item get(int id, Integer meta, int count, byte[] tags) {
         try {
-            Class<?> c = null;
+            Class<?> c;
             if (id < 0) {
                 int blockId = 255 - id;
                 c = Block.list[blockId];

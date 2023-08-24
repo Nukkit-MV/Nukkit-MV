@@ -2504,15 +2504,14 @@ public class Player extends EntityHuman implements CommandSender, InventoryHolde
                                 int i = 0;
                                 for (Integer id : customItems) {
                                     Item item = Item.get(id);
-                                    if (!(item instanceof ItemCustom)) {
+                                    if (!(item instanceof ItemCustom itemCustom)) {
                                         continue;
                                     }
 
-                                    ItemCustom itemCustom = (ItemCustom) item;
                                     CompoundTag data = itemCustom.getComponentsData(this.protocol);
                                     data.putShort("minecraft:identifier", i);
 
-                                    itemComponentPacket.entries[i] = new ItemComponentPacket.Entry(("customitem:" + item.getName()).toLowerCase(), data);
+                                    itemComponentPacket.entries[i] = new ItemComponentPacket.Entry(((ItemCustom) item).getNamespaceId(), data);
 
                                     i++;
                                 }
