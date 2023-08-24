@@ -5,7 +5,7 @@
     <name>Nukkit-MV</name>
     <groupId>cn.nukkit</groupId>
     <artifactId>NukkitMV</artifactId>
-    <version>1.20.10-SNAPSHOT</version>
+    <version>1.20.10-1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -28,6 +28,10 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>opencollab-repo-release</id>
             <url>https://repo.opencollab.dev/maven-releases/</url>
             <releases>
@@ -41,23 +45,29 @@
             <id>opencollab-repo-snapshot</id>
             <url>https://repo.opencollab.dev/maven-snapshots/</url>
             <releases>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
         <repository>
-            <id>repo-lanink-cn</id>
-            <url>https://repo.lanink.cn/</url>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>com.nukkitx.network</groupId>
+            <groupId>cn.powernukkitx.PowerNukkitX-Network</groupId>
             <artifactId>raknet</artifactId>
-            <version>1.6.28-MOT-SNAPSHOT</version>
+            <version>1.6.28-PNX.5</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -180,9 +190,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.iq80.leveldb</groupId>
-            <artifactId>leveldb</artifactId>
-            <version>0.11-SNAPSHOT</version>
+            <groupId>org.powernukkit.bedrock.leveldb</groupId>
+            <artifactId>bedrock-leveldb</artifactId>
+            <version>0.11.0-PN</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>
@@ -307,6 +317,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <finalName>${project.name}-${project.version}-shaded</finalName>
                     <filters>
                         <filter>
                             <artifact>*:*</artifact>
