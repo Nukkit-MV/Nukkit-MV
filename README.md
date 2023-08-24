@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    implementation("cn.nukkit:NukkitMV:1.20.10-SNAPSHOT")
+    implementation("cn.nukkit:NukkitMV:1.20.10-1-SNAPSHOT")
 }
 ````
 
@@ -46,7 +46,7 @@ dependencies {
     <dependency>
         <groupId>cn.nukkit</groupId>
         <artifactId>NukkitMV</artifactId>
-        <version>1.20.10-SNAPSHOT</version>
+        <version>1.20.10-1-SNAPSHOT</version>
     </dependency>
 </dependencies>
 ````
