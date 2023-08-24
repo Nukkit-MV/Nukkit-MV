@@ -16,10 +16,6 @@ public abstract class ItemCustom extends Item {
     @Getter
     private String textureName;
 
-    @Setter
-    @Getter
-    private String namespaceId;
-
     public ItemCustom(int id) {
         this(id, 0, 1, UNKNOWN_STR);
     }
@@ -35,15 +31,9 @@ public abstract class ItemCustom extends Item {
     public ItemCustom(int id, Integer meta, int count, String name) {
         this(id, meta, count, name, name);
     }
-
     public ItemCustom(int id, Integer meta, int count, String name, String textureName) {
-        this(id, meta, count, name, "custom:" + name.toLowerCase(), textureName);
-    }
-
-    public ItemCustom(int id, Integer meta, int count, String name, String namespaceId, String textureName) {
         super(id, meta, count, name);
         this.textureName = textureName;
-        this.namespaceId = namespaceId;
     }
 
     public boolean allowOffHand() {
