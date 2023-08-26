@@ -23,14 +23,14 @@ public class ReloadCommand extends VanillaCommand {
             return true;
         }
 
-        if (args.length > 0 && "true".equals(args[0])) {
+        if (args.length > 0 && args[0].equals("confirm")) {
             Command.broadcastCommandMessage(sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloading" + TextFormat.WHITE));
 
             sender.getServer().reload();
 
             Command.broadcastCommandMessage(sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloaded" + TextFormat.WHITE));
-        }else {
-            sender.sendMessage(TextFormat.RED + "reload命令会导致部分插件报错,如确定执行请使用: /reload true");
+        } else {
+            sender.sendMessage(TextFormat.RED + "Reloading can cause problems for some plugins! You can force to reload by using: /reload confirm");
         }
 
         return true;
